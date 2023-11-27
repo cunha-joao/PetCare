@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class LocalRecolha {
     private String morada;
     private String localidade;
@@ -15,13 +16,11 @@ public class LocalRecolha {
         this.funcionarios = new ArrayList<>();
     }
 
-    public void adicionarFuncionario(Funcionario funcionario) {
-        funcionarios.add(funcionario);
-    }
-
-    public List<Funcionario> listarFuncionarios() {
+    public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
 
-    // Outros métodos relacionados ao Local de Recolha
+    public void adicionarFuncionario(Funcionario funcionario) {
+        funcionarios.add(funcionario);
+    }
 }
