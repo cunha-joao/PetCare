@@ -7,7 +7,7 @@ public class Marcacao {
     private Funcionario funcionario;
     private Servico servico;
     private Date dataHora;
-    private String estado;
+    private Estado estado;
 
     // Construtor
     public Marcacao(Cliente cliente, PrestadorServico prestadorServico, LocalRecolha localRecolha,
@@ -18,14 +18,10 @@ public class Marcacao {
         this.funcionario = funcionario;
         this.servico = servico;
         this.dataHora = dataHora;
-        this.estado = "Pendente";
+        this.estado = Estado.pendente;
     }
 
-    public void confirmaServiço() {
-        this.estado = "Confirmado";
-    }
-
-    public void anulaServiço(String explicacao) {
-        this.estado = "Anulado";
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 }
