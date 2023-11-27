@@ -1,6 +1,8 @@
 import java.util.*;
 
 public class Utilizador {
+    private String nomeUtilizador;
+    private String password;
     private String nome;
     private String numeroCartaoCidadao;
     private String numeroFiscal;
@@ -9,14 +11,30 @@ public class Utilizador {
     private String localidade;
 
     // Construtor
-    public Utilizador(String nome, String numeroCartaoCidadao, String numeroFiscal,
-                      String telefone, String morada, String localidade) {
+    public Utilizador(String nomeUtilizador, String password, String nome, String numeroCartaoCidadao,
+                      String numeroFiscal, String telefone, String morada, String localidade) {
         this.nome = nome;
         this.numeroCartaoCidadao = numeroCartaoCidadao;
         this.numeroFiscal = numeroFiscal;
         this.telefone = telefone;
         this.morada = morada;
         this.localidade = localidade;
+    }
+
+    public String getNomeUtilizador() {
+        return nomeUtilizador;
+    }
+
+    public void setNomeUtilizador(String nomeUtilizador) {
+        this.nomeUtilizador = nomeUtilizador;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNome() {

@@ -1,5 +1,5 @@
 public enum Estado {
-    pendente,
-    confirmado,
-    anulado
+    PENDENTE,
+    CONFIRMADO,
+    ANULADO
 }

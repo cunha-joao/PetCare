@@ -6,9 +6,11 @@ public class PrestadorServico extends Utilizador {
     private List<Funcionario> funcionarios;
 
     // Construtor
-    public PrestadorServico(String nome, String numeroCartaoCidadao, String numeroFiscal,
-                            String telefone, String morada, String localidade) {
-        super(nome, numeroCartaoCidadao, numeroFiscal, telefone, morada, localidade);
+    public PrestadorServico(String nomeUtilizador, String password, String nome,
+                            String numeroCartaoCidadao, String numeroFiscal, String telefone,
+                            String morada, String localidade) {
+        super(nomeUtilizador, password, nome, numeroCartaoCidadao, numeroFiscal, telefone,
+                morada, localidade);
         this.locaisRecolha = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
     }
