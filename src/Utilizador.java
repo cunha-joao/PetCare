@@ -9,7 +9,8 @@ public class Utilizador {
     private String localidade;
 
     // Construtor
-    public Utilizador(String nome, String numeroCartaoCidadao, String numeroFiscal, String telefone, String morada, String localidade) {
+    public Utilizador(String nome, String numeroCartaoCidadao, String numeroFiscal,
+                      String telefone, String morada, String localidade) {
         this.nome = nome;
         this.numeroCartaoCidadao = numeroCartaoCidadao;
         this.numeroFiscal = numeroFiscal;
@@ -18,5 +19,51 @@ public class Utilizador {
         this.localidade = localidade;
     }
 
-    // Getters e Setters (não mostrados para brevidade)
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNumeroCartaoCidadao() {
+        return numeroCartaoCidadao;
+    }
+
+    public void setNumeroCartaoCidadao(String numeroCartaoCidadao) {
+        this.numeroCartaoCidadao = numeroCartaoCidadao;
+    }
+
+    public String getNumeroFiscal() {
+        return numeroFiscal;
+    }
+
+    public void setNumeroFiscal(String numeroFiscal) {
+        this.numeroFiscal = numeroFiscal;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
 }

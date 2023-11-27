@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class Marcacao {
     private Cliente cliente;
     private PrestadorServico prestadorServico;
@@ -9,25 +10,22 @@ public class Marcacao {
     private String estado;
 
     // Construtor
-    public Marcacao(Cliente cliente, PrestadorServico prestadorServico, LocalRecolha localRecolha, Funcionario funcionario, Servico servico, Date dataHora) {
+    public Marcacao(Cliente cliente, PrestadorServico prestadorServico, LocalRecolha localRecolha,
+                    Funcionario funcionario, Servico servico, Date dataHora) {
         this.cliente = cliente;
         this.prestadorServico = prestadorServico;
         this.localRecolha = localRecolha;
         this.funcionario = funcionario;
         this.servico = servico;
         this.dataHora = dataHora;
-        this.estado = "Pendente"; // Estado inicial
+        this.estado = "Pendente";
     }
 
-    public void confirmarServiço() {
+    public void confirmaServiço() {
         this.estado = "Confirmado";
-        // Lógica para adicionar produtos/serviços complementares e pagamento
     }
 
-    public void anularServiço(String razao) {
+    public void anulaServiço(String explicacao) {
         this.estado = "Anulado";
-        // Lógica para lidar com a anulação e a razão fornecida
     }
-
-    // Outros métodos relacionados à Marcação
 }
