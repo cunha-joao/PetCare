@@ -21,7 +21,7 @@ public class Cliente extends Utilizador {
 
     public void realizarPagamento(Marcacao marcacao, double valor) {
         // Lógica para realizar o pagamento
-        // Exemplo: atualizar estado da marcação para "pago"
+        // Exemplo: atualizar estado da marcação para "pago"mm
         marcacao.setEstado(Estado.confirmado);
     }
 }
