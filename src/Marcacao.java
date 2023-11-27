@@ -18,7 +18,7 @@ public class Marcacao {
         this.funcionario = funcionario;
         this.servico = servico;
         this.dataHora = dataHora;
-        this.estado = Estado.pendente;
+        this.estado = Estado.PENDENTE;
     }
 
     public void setEstado(Estado estado) {
