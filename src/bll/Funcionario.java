@@ -1,4 +1,4 @@
-import java.util.*;
+package bll;
 
 public class Funcionario extends Utilizador {
     private TipoFuncionario tipoFuncionario;
