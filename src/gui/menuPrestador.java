@@ -2,9 +2,8 @@ package gui;
 
 import javax.swing.*;
 
-public class menuPrestador {
-    private JPanel panel1;
-    private JLabel menuPrestador;
+public class menuPrestador extends JFrame{
+    private JPanel menuPres;
     private JButton consultarMarcacoesButton;
     private JButton criarNovoLocalDeButton;
     private JButton consultarDadosPessoaisButton;
@@ -12,4 +11,8 @@ public class menuPrestador {
     private JButton consultarLocaisDeRecolhaButton;
     private JButton adicionarFuncionariosALocalButton;
     private JButton sairButton;
+
+    public JPanel getPanel() {
+        return menuPres;
+    }
 }

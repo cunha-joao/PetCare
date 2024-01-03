@@ -1,7 +1,7 @@
 package bll;
 
 public enum TipoUtilizador {
-    ADMIN,
+    ADMINISTRADOR,
     VETERINARIO,
     EDUCADOR,
     AUXILIAR,
