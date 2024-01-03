@@ -1,6 +1,8 @@
 package bll;
 
-import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Utilizador {
     private String nomeUtilizador;
@@ -11,16 +13,21 @@ public class Utilizador {
     private String telefone;
     private String morada;
     private String localidade;
+    private TipoUtilizador tipo;
 
     // Construtor
     public Utilizador(String nomeUtilizador, String password, String nome, String numeroCartaoCidadao,
-                      String numeroFiscal, String telefone, String morada, String localidade) {
+                      String numeroFiscal, String telefone, String morada, String localidade,
+                      TipoUtilizador tipo) {
+        this.nomeUtilizador = nomeUtilizador;
+        this.password = password;
         this.nome = nome;
         this.numeroCartaoCidadao = numeroCartaoCidadao;
         this.numeroFiscal = numeroFiscal;
         this.telefone = telefone;
         this.morada = morada;
         this.localidade = localidade;
+        this.tipo = tipo;
     }
 
     public String getNomeUtilizador() {
@@ -85,5 +92,28 @@ public class Utilizador {
 
     public void setLocalidade(String localidade) {
         this.localidade = localidade;
+    }
+
+    public TipoUtilizador getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoUtilizador tipo) {
+        this.tipo = tipo;
+    }
+
+    // Método para adicionar um utilizador a um ficheiro
+    public static void adicionarUtilizador(Utilizador utilizador) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("utilizadores.txt", true))) {
+            writer.write(utilizador.toString());
+            writer.newLine();
+        }
+    }
+
+    // Método toString para formatar a saída do utilizador
+    @Override
+    public String toString() {
+        return nomeUtilizador + ";" + password + ";" + nome + ";" + numeroCartaoCidadao + ";" +
+                numeroFiscal + ";" + telefone + ";" + morada + ";" + localidade + ";" + tipo;
     }
 }

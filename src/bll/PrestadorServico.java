@@ -5,14 +5,14 @@ import java.util.*;
 
 public class PrestadorServico extends Utilizador {
     private List<LocalRecolha> locaisRecolha;
-    private List<Funcionario> funcionarios;
+    private List<Auxiliar> funcionarios;
 
     // Construtor
     public PrestadorServico(String nomeUtilizador, String password, String nome,
                             String numeroCartaoCidadao, String numeroFiscal, String telefone,
-                            String morada, String localidade) {
+                            String morada, String localidade, TipoUtilizador tipo) {
         super(nomeUtilizador, password, nome, numeroCartaoCidadao, numeroFiscal, telefone,
-                morada, localidade);
+                morada, localidade, tipo);
         this.locaisRecolha = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
     }

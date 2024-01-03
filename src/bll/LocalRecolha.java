@@ -7,7 +7,7 @@ public class LocalRecolha {
     private String localidade;
     private String numeroTelefone;
     private String tipoServico;
-    private List<Funcionario> funcionarios;
+    private List<Auxiliar> funcionarios;
     private List<Servico> servicos;
 
     // Construtor
@@ -20,11 +20,11 @@ public class LocalRecolha {
         this.servicos = new ArrayList<>();
     }
 
-    public List<Funcionario> getFuncionarios() {
+    public List<Auxiliar> getFuncionarios() {
         return funcionarios;
     }
 
-    public void adicionarFuncionario(Funcionario funcionario) {
+    public void adicionarFuncionario(Auxiliar funcionario) {
         funcionarios.add(funcionario);
     }
     public List<Marcacao> consultarMarcacoes() {

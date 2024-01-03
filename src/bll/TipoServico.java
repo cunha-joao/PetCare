@@ -5,5 +5,6 @@ public enum TipoServico {
     PASSEIOCAO,
     EDUCAGATO,
     PASSEIOGATO,
-    TOSQUIA
+    TOSQUIA,
+    BANHO
 }
