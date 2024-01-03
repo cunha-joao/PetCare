@@ -7,9 +7,10 @@ public class Cliente extends Utilizador {
     private List<Servico> servicosContratados;
 
     public Cliente(String nomeUtilizador, String password, String nome, String numeroCartaoCidadao,
-                   String numeroFiscal, String telefone, String morada, String localidade) {
+                   String numeroFiscal, String telefone, String morada, String localidade,
+                   TipoUtilizador tipo) {
         super(nomeUtilizador, password, nome, numeroCartaoCidadao, numeroFiscal, telefone, morada,
-                localidade);
+                localidade, tipo);
         this.marcacoes = new ArrayList<>();
         this.servicosContratados = new ArrayList<>();
     }
