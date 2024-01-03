@@ -1,8 +1,9 @@
 package bll;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Cliente extends Utilizador {
+public class Cliente extends Utilizador implements Serializable {
     private List<Marcacao> marcacoes;
     private List<Servico> servicosContratados;
 

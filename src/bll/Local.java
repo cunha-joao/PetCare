@@ -2,16 +2,16 @@ package bll;
 
 import java.util.*;
 
-public class LocalRecolha {
+public class Local {
     private String morada;
     private String localidade;
     private String numeroTelefone;
-    private String tipoServico;
+    private TipoServico tipoServico;
     private List<Auxiliar> funcionarios;
     private List<Servico> servicos;
 
     // Construtor
-    public LocalRecolha(String morada, String localidade, String numeroTelefone, String tipoServico) {
+    public Local(String morada, String localidade, String numeroTelefone, TipoServico tipoServico) {
         this.morada = morada;
         this.localidade = localidade;
         this.numeroTelefone = numeroTelefone;

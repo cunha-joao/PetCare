@@ -25,7 +25,7 @@ public class loginPanel {
         registarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("adicionarUtilizador");
+                JFrame frame = new JFrame("Registar");
                 adicionarUtilizador utilizador = new adicionarUtilizador(frame);
                 frame.setContentPane(utilizador.getPanel());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela

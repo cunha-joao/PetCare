@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class menuSecretariado extends JFrame{
     private JPanel menuSecre;
-    private JButton button1;
+    private JButton sairButton;
 
     public JPanel getPanel() {
         return menuSecre;

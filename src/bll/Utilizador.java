@@ -3,8 +3,9 @@ package bll;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Utilizador {
+public class Utilizador implements Serializable {
     private String nomeUtilizador;
     private String password;
     private String nome;

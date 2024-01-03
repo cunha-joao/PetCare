@@ -3,6 +3,8 @@ package gui;
 import bll.TipoUtilizador;
 import bll.Utilizador;
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 public class adicionarUtilizador {
@@ -18,7 +20,6 @@ public class adicionarUtilizador {
     private JTextField localidade;
     private JButton voltarButton;
     private JComboBox tipoUtilizadores;
-    private JLabel tipo;
 
     private JFrame currentFrame; // Referência ao JFrame atual
 
@@ -45,6 +46,18 @@ public class adicionarUtilizador {
                     localidade.getText(),
                     tipoSelecionado
             );
+
+            // Verifica se o tipo selecionado é "Prestador"
+            if (tipoSelecionado == TipoUtilizador.PRESTADOR) {
+                adicionarLocal localPanel = new adicionarLocal();
+
+                // Cria um JDialog modal
+                JDialog localDialog = new JDialog(currentFrame, "Adicionar Local", true);
+                localDialog.setContentPane(localPanel.getPanel());
+                localDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                localDialog.pack();
+                localDialog.setVisible(true); // Este método bloqueará até que o JDialog seja fechado
+            }
 
             Utilizador.adicionarUtilizador(novoUtilizador);
             JOptionPane.showMessageDialog(Registar, "Utilizador registrado com sucesso!");
