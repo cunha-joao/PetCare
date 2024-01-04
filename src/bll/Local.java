@@ -2,20 +2,18 @@ package bll;
 
 import java.util.*;
 
-public class LocalRecolha {
+public class Local {
     private String morada;
     private String localidade;
     private String numeroTelefone;
-    private String tipoServico;
     private List<Auxiliar> funcionarios;
     private List<Servico> servicos;
 
     // Construtor
-    public LocalRecolha(String morada, String localidade, String numeroTelefone, String tipoServico) {
+    public Local(String morada, String localidade, String numeroTelefone) {
         this.morada = morada;
         this.localidade = localidade;
         this.numeroTelefone = numeroTelefone;
-        this.tipoServico = tipoServico;
         this.funcionarios = new ArrayList<>();
         this.servicos = new ArrayList<>();
     }
@@ -26,6 +24,9 @@ public class LocalRecolha {
 
     public void adicionarFuncionario(Auxiliar funcionario) {
         funcionarios.add(funcionario);
+    }
+    public void adicionarServico(Servico servico) {
+        servicos.add(servico);
     }
     public List<Marcacao> consultarMarcacoes() {
         // Lógica para consultar marcações no local de recolha

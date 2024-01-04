@@ -2,9 +2,7 @@ package bll;
 
 public enum TipoServico {
     EDUCACAO,
-    PASSEIOCAO,
-    EDUCAGATO,
-    PASSEIOGATO,
+    PASSEIO,
     TOSQUIA,
     BANHO
 }
