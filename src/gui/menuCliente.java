@@ -1,5 +1,7 @@
 package gui;
 
+import bll.Utilizador;
+
 import javax.swing.*;
 
 public class menuCliente extends JFrame{
@@ -8,6 +10,8 @@ public class menuCliente extends JFrame{
     private JButton pagarServicoButton;
     private JButton consultarMarcacoesButton;
     private JButton sairButton;
+
+    public menuCliente(Utilizador utilizador){}
 
     public JPanel getPanel() {
         return menuCli;

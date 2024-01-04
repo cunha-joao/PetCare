@@ -5,12 +5,12 @@ import java.util.*;
 
 public class PrestadorServico extends Utilizador {
     private List<Local> locaisRecolha;
-    private List<Auxiliar> funcionarios;
+    private List<Funcionario> funcionarios;
 
     // Map que associa Local a PrestadorServico
     private static Map<Local, PrestadorServico> localPrestadorMap = new HashMap<>();
 
-    // Map que associa PrestadorServico a sua lista de locaisRecolha
+    // Map que associa PrestadorServico a lista de locaisRecolha
     private static Map<PrestadorServico, List<Local>> prestadorLocaisMap = new HashMap<>();
 
 
@@ -24,17 +24,17 @@ public class PrestadorServico extends Utilizador {
         this.funcionarios = new ArrayList<>();
     }
 
-    public void adicionarLocal(Local local) {
+    public void adicionarLocalMap(Local local) {
         locaisRecolha.add(local);
         localPrestadorMap.put(local, this);
         prestadorLocaisMap.put(this, locaisRecolha);
     }
 
-    public void consultarAlterarDados() {
-        // Lógica para consultar e alterar dados do prestador de serviço
+    public void adicionarFuncionario(Funcionario funcionario) {
+        funcionarios.add(funcionario);
     }
 
-    public void confirmarAnularMarcacao(Marcacao marcacao, boolean confirmar) {
-        // Lógica para confirmar ou anular marcação
+    public List<Local> consultarLocaisRecolha(){
+        return new ArrayList<>(locaisRecolha);
     }
 }

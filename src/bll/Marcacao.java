@@ -6,14 +6,14 @@ public class Marcacao {
     private Cliente cliente;
     private PrestadorServico prestadorServico;
     private Local local;
-    private Auxiliar funcionario;
+    private Funcionario funcionario;
     private Servico servico;
     private Date dataHora;
     private Estado estado;
 
     // Construtor
     public Marcacao(Cliente cliente, PrestadorServico prestadorServico, Local local,
-                    Auxiliar funcionario, Servico servico, Date dataHora) {
+                    Funcionario funcionario, Servico servico, Date dataHora) {
         this.cliente = cliente;
         this.prestadorServico = prestadorServico;
         this.local = local;
