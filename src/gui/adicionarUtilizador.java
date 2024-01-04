@@ -49,7 +49,8 @@ public class adicionarUtilizador {
 
             // Verifica se o tipo selecionado é "Prestador"
             if (tipoSelecionado == TipoUtilizador.PRESTADOR) {
-                adicionarLocal localPanel = new adicionarLocal();
+                JFrame frameLocal = new JFrame("Adicionar Local");
+                adicionarLocal localPanel = new adicionarLocal(frameLocal);
 
                 // Cria um JDialog modal
                 JDialog localDialog = new JDialog(currentFrame, "Adicionar Local", true);
