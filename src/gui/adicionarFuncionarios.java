@@ -7,4 +7,5 @@ public class adicionarFuncionarios {
     private JComboBox funcionarioDisponiveis;
     private JButton adicionarButton;
     private JButton cancelarButton;
+    private JComboBox locaisDisponiveis;
 }
