@@ -34,7 +34,7 @@
       </component>
       <component id="fa3c5" class="javax.swing.JButton" binding="consultarDadosPessoaisButton" default-binding="true">
         <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Consultar Dados Pessoais"/>
@@ -42,26 +42,10 @@
       </component>
       <component id="a6d15" class="javax.swing.JButton" binding="alterarDadosPessoaisButton" default-binding="true">
         <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Alterar Dados Pessoais"/>
-        </properties>
-      </component>
-      <component id="ffcb4" class="javax.swing.JButton" binding="consultarLocaisDeRecolhaButton" default-binding="true">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Consultar Locais de Recolha"/>
-        </properties>
-      </component>
-      <component id="516bb" class="javax.swing.JButton" binding="adicionarFuncionariosALocalButton">
-        <constraints>
           <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Adicionar funcionários a Local de Recolha"/>
+          <text value="Alterar Dados Pessoais"/>
         </properties>
       </component>
       <component id="30a13" class="javax.swing.JButton" binding="sairButton" default-binding="true">
@@ -70,6 +54,22 @@
         </constraints>
         <properties>
           <text value="Sair"/>
+        </properties>
+      </component>
+      <component id="ffcb4" class="javax.swing.JButton" binding="consultarLocaisDeRecolhaButton" default-binding="true">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Consultar Locais de Recolha"/>
+        </properties>
+      </component>
+      <component id="516bb" class="javax.swing.JButton" binding="adicionarFuncionariosALocalButton">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Adicionar funcionários a Local de Recolha"/>
         </properties>
       </component>
     </children>

@@ -6,7 +6,7 @@ public class Local {
     private String morada;
     private String localidade;
     private String numeroTelefone;
-    private List<Auxiliar> funcionarios;
+    private List<Funcionario> funcionarios;
     private List<Servico> servicos;
 
     // Construtor
@@ -18,11 +18,11 @@ public class Local {
         this.servicos = new ArrayList<>();
     }
 
-    public List<Auxiliar> getFuncionarios() {
+    public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }
 
-    public void adicionarFuncionario(Auxiliar funcionario) {
+    public void adicionarFuncionario(Funcionario funcionario) {
         funcionarios.add(funcionario);
     }
     public void adicionarServico(Servico servico) {
@@ -31,5 +31,10 @@ public class Local {
     public List<Marcacao> consultarMarcacoes() {
         // Lógica para consultar marcações no local de recolha
         return null;
+    }
+
+    public String toString() {
+        return morada + ";" + localidade + ";" + numeroTelefone + ";" + funcionarios + ";" +
+                servicos;
     }
 }

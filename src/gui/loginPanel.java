@@ -1,6 +1,8 @@
 package gui;
 
+import bll.PrestadorServico;
 import bll.TipoUtilizador;
+import bll.Utilizador;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 
 public class loginPanel {
     private JPanel Login;
@@ -49,9 +52,9 @@ public class loginPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    TipoUtilizador tipoUtilizador = login(utilizador.getText(), new String(password.getPassword()));
-                    if (tipoUtilizador != null) {
-                        abrirInterface(tipoUtilizador); // Abre a interface com base no tipo
+                    Utilizador util = login(utilizador.getText(), new String(password.getPassword()));
+                    if (util != null) {
+                        abrirInterface(util); // Abre a interface com base no tipo
                     } else {
                         JOptionPane.showMessageDialog(Login, "Utilizador ou senha incorretos!");
                     }
@@ -62,24 +65,109 @@ public class loginPanel {
         });
     }
 
-    private TipoUtilizador login(String username, String password) throws IOException {
+    private Utilizador login(String username, String password) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader("utilizadores.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(";");
                 if (userDetails.length >= 3 && userDetails[0].equals(username) && userDetails[1].equals(password)) {
-                    return TipoUtilizador.fromString(userDetails[8]); // Supondo que o tipo está na terceira posição
+                    // Cria um objeto com os detalhes lidos do arquivo
+                    if(Objects.equals(userDetails[8], TipoUtilizador.ADMINISTRADOR.toString())){
+                        return new PrestadorServico(
+                                username, // Supondo que o username é o primeiro elemento
+                                password, // Supondo que a password é o segundo elemento
+                                userDetails[2], // Nome
+                                userDetails[3], // Número do Cartão de Cidadão
+                                userDetails[4], // Número Fiscal
+                                userDetails[5], // Telefone
+                                userDetails[6], // Morada
+                                userDetails[7], // Localidade
+                                TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    }else if(Objects.equals(userDetails[8], TipoUtilizador.VETERINARIO.toString())){
+                        return new PrestadorServico(
+                                username, // Supondo que o username é o primeiro elemento
+                                password, // Supondo que a password é o segundo elemento
+                                userDetails[2], // Nome
+                                userDetails[3], // Número do Cartão de Cidadão
+                                userDetails[4], // Número Fiscal
+                                userDetails[5], // Telefone
+                                userDetails[6], // Morada
+                                userDetails[7], // Localidade
+                                TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    }else if(Objects.equals(userDetails[8], TipoUtilizador.EDUCADOR.toString())){
+                        return new PrestadorServico(
+                                username, // Supondo que o username é o primeiro elemento
+                                password, // Supondo que a password é o segundo elemento
+                                userDetails[2], // Nome
+                                userDetails[3], // Número do Cartão de Cidadão
+                                userDetails[4], // Número Fiscal
+                                userDetails[5], // Telefone
+                                userDetails[6], // Morada
+                                userDetails[7], // Localidade
+                                TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    } else if(Objects.equals(userDetails[8], TipoUtilizador.AUXILIAR.toString())){
+                        return new PrestadorServico(
+                                username, // Supondo que o username é o primeiro elemento
+                                password, // Supondo que a password é o segundo elemento
+                                userDetails[2], // Nome
+                                userDetails[3], // Número do Cartão de Cidadão
+                                userDetails[4], // Número Fiscal
+                                userDetails[5], // Telefone
+                                userDetails[6], // Morada
+                                userDetails[7], // Localidade
+                                TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    }else if(Objects.equals(userDetails[8], TipoUtilizador.SECRETARIADO.toString())){
+                        return new PrestadorServico(
+                                username, // Supondo que o username é o primeiro elemento
+                                password, // Supondo que a password é o segundo elemento
+                                userDetails[2], // Nome
+                                userDetails[3], // Número do Cartão de Cidadão
+                                userDetails[4], // Número Fiscal
+                                userDetails[5], // Telefone
+                                userDetails[6], // Morada
+                                userDetails[7], // Localidade
+                                TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    }else if(Objects.equals(userDetails[8], TipoUtilizador.CLIENTE.toString())){
+                        return new PrestadorServico(
+                                username, // Supondo que o username é o primeiro elemento
+                                password, // Supondo que a password é o segundo elemento
+                                userDetails[2], // Nome
+                                userDetails[3], // Número do Cartão de Cidadão
+                                userDetails[4], // Número Fiscal
+                                userDetails[5], // Telefone
+                                userDetails[6], // Morada
+                                userDetails[7], // Localidade
+                                TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    }else if(Objects.equals(userDetails[8], TipoUtilizador.PRESTADOR.toString())){
+                        return new PrestadorServico(
+                            username, // Supondo que o username é o primeiro elemento
+                            password, // Supondo que a password é o segundo elemento
+                            userDetails[2], // Nome
+                            userDetails[3], // Número do Cartão de Cidadão
+                            userDetails[4], // Número Fiscal
+                            userDetails[5], // Telefone
+                            userDetails[6], // Morada
+                            userDetails[7], // Localidade
+                            TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
+                        );
+                    }
                 }
             }
         }
         return null;
     }
 
-    private void abrirInterface(TipoUtilizador tipoUtilizador) {
-        switch (tipoUtilizador) {
+    private void abrirInterface(Utilizador utilizador) {
+        switch (utilizador.getTipo()) {
             case ADMINISTRADOR:
                 // Abrir a interface de admin
-                menuAdmin menuAdministrador = new menuAdmin();
+                menuAdmin menuAdministrador = new menuAdmin(utilizador);
                 menuAdministrador.setContentPane(menuAdministrador.getPanel());
                 menuAdministrador.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuAdministrador.pack();
@@ -99,7 +187,7 @@ public class loginPanel {
                 break;
             case VETERINARIO:
                 // Abrir a interface de veterinário
-                menuVeterinario menuVet = new menuVeterinario();
+                menuVeterinario menuVet = new menuVeterinario(utilizador);
                 menuVet.setContentPane(menuVet.getPanel());
                 menuVet.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuVet.pack();
@@ -119,7 +207,7 @@ public class loginPanel {
                 break;
             case EDUCADOR:
                 // Abrir a interface de educador
-                menuEducador menuEdu = new menuEducador();
+                menuEducador menuEdu = new menuEducador(utilizador);
                 menuEdu.setContentPane(menuEdu.getPanel());
                 menuEdu.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuEdu.pack();
@@ -139,7 +227,7 @@ public class loginPanel {
                 break;
             case AUXILIAR:
                 // Abrir a interface de auxiliar
-                menuAuxiliar menuAux = new menuAuxiliar();
+                menuAuxiliar menuAux = new menuAuxiliar(utilizador);
                 menuAux.setContentPane(menuAux.getPanel());
                 menuAux.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuAux.pack();
@@ -159,7 +247,7 @@ public class loginPanel {
                 break;
             case SECRETARIADO:
                 // Abrir a interface de secretariado
-                menuSecretariado menuSecre = new menuSecretariado();
+                menuSecretariado menuSecre = new menuSecretariado(utilizador);
                 menuSecre.setContentPane(menuSecre.getPanel());
                 menuSecre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuSecre.pack();
@@ -179,7 +267,7 @@ public class loginPanel {
                 break;
             case CLIENTE:
                 // Abrir a interface de cliente
-                menuCliente menuCli = new menuCliente();
+                menuCliente menuCli = new menuCliente(utilizador);
                 menuCli.setContentPane(menuCli.getPanel());
                 menuCli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuCli.pack();
@@ -199,7 +287,7 @@ public class loginPanel {
                 break;
             case PRESTADOR:
                 // Abrir a interface de prestador
-                menuPrestador menuPre = new menuPrestador();
+                menuPrestador menuPre = new menuPrestador(utilizador);
                 menuPre.setContentPane(menuPre.getPanel());
                 menuPre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
                 menuPre.pack();
