@@ -1,5 +1,7 @@
 package gui;
 
+import bll.Utilizador;
+
 import javax.swing.*;
 
 public class menuAdmin extends JFrame{
@@ -12,6 +14,8 @@ public class menuAdmin extends JFrame{
     private JButton consultarMenuDePrestadorButton;
     private JButton consultarMenuDeAuxiliarButton;
     private JButton sairButton;
+
+    public menuAdmin(Utilizador utilizador){}
 
     public JPanel getPanel() {
         return menuAdmin;
