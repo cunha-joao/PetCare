@@ -1,4 +1,4 @@
-package gui;
+package gui.metodos;
 
 import bll.Local;
 import bll.PrestadorServico;

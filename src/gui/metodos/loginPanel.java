@@ -1,8 +1,9 @@
-package gui;
+package gui.metodos;
 
 import bll.PrestadorServico;
 import bll.TipoUtilizador;
 import bll.Utilizador;
+import gui.menus.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

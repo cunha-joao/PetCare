@@ -1,4 +1,4 @@
-package gui;
+package gui.menus;
 
 import bll.Utilizador;
 
@@ -6,20 +6,21 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class menuVeterinario extends JFrame{
-    private JPanel menuVet;
+public class menuAuxiliar extends JFrame{
+    private JPanel menuAuxiliar;
+    private JButton consultarMarcacoesButton;
     private JButton sairButton;
 
-    public menuVeterinario(Utilizador utilizador){
+    public menuAuxiliar(Utilizador utilizador){
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuVeterinario.this.dispose();
+                menuAuxiliar.this.dispose();
             }
         });
     }
 
     public JPanel getPanel() {
-        return menuVet;
+        return menuAuxiliar;
     }
 }

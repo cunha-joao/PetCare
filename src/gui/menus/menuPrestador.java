@@ -1,8 +1,10 @@
-package gui;
+package gui.menus;
 
 import bll.Local;
 import bll.PrestadorServico;
 import bll.Utilizador;
+import gui.metodos.alterarDadosPessoais;
+import gui.metodos.presconsultarlocais;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -57,6 +59,10 @@ public class menuPrestador extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // Abre a interface de alteração de dados pessoais
                 alterarDadosPessoais alterarDados = new alterarDadosPessoais(utilizadorAtual);
+                alterarDados.setContentPane(alterarDados.getPanel());
+                alterarDados.setVisible(true);
+                alterarDados.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
+                alterarDados.pack();
                 alterarDados.setVisible(true);
 
                 // Oculta a interface atual
