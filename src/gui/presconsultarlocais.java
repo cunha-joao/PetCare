@@ -24,14 +24,19 @@ public class presconsultarlocais extends JFrame {
         textAreaInfo = new JTextArea();
         textAreaInfo.setEditable(false);
 
-        List<Local> locais = prestador.consultarLocaisRecolha();
-        if (locais.isEmpty()) {
+        System.out.println("Current prestadorLocaisMap: " + PrestadorServico.getPrestadorLocaisMap());
+        List<Local> locais = PrestadorServico.getPrestadorLocaisMap().get(prestador);
+
+        if (locais == null || locais.isEmpty()) {
+            System.out.println("No locations found for prestador: " + prestador);
             comboBoxLocais.addItem("Nenhum local encontrado");
         } else {
             for (Local local : locais) {
                 comboBoxLocais.addItem(local.toString());
             }
         }
+
+
 
         comboBoxLocais.addActionListener(new ActionListener() {
             @Override
