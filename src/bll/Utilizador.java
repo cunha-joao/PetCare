@@ -117,4 +117,5 @@ public class Utilizador implements Serializable {
         return nomeUtilizador + ";" + password + ";" + nome + ";" + numeroCartaoCidadao + ";" +
                 numeroFiscal + ";" + telefone + ";" + morada + ";" + localidade + ";" + tipo;
     }
+
 }
