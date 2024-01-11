@@ -18,6 +18,19 @@ public class Local {
         this.servicos = new ArrayList<>();
     }
 
+    // Métodos Getter
+    public String getMorada() {
+        return morada;
+    }
+
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    public String getNumeroTelefone() {
+        return numeroTelefone;
+    }
+
     public List<Funcionario> getFuncionarios() {
         return funcionarios;
     }

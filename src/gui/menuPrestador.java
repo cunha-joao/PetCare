@@ -79,7 +79,17 @@ public class menuPrestador extends JFrame{
         });
     }
 
+
     private void mostrarLocais(List<Local> locais) {
+        PrestadorServico prestador = (PrestadorServico) utilizadorAtual; // Cast para PrestadorServico
+        presconsultarlocais telaLocais = new presconsultarlocais(prestador);
+        telaLocais.setVisible(true);
+    }
+
+
+// ... Restante do código da classe menuPrestador ...
+
+  /*  private void mostrarLocais(List<Local> locais) {
         // Implementar a lógica para mostrar os locais
         // Exemplo: pode usar um JOptionPane para exibir os locais
         StringBuilder locaisStr = new StringBuilder();
@@ -87,7 +97,7 @@ public class menuPrestador extends JFrame{
             locaisStr.append(local.toString()).append("\n"); // Assumindo que a classe Local tem um método toString adequado
         }
         JOptionPane.showMessageDialog(this, locaisStr.toString());
-    }
+    }*/
 
     public JPanel getPanel() {
         return menuPres;

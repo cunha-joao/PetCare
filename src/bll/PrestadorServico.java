@@ -24,6 +24,14 @@ public class PrestadorServico extends Utilizador {
         this.funcionarios = new ArrayList<>();
     }
 
+    public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
+        return localPrestadorMap;
+    }
+
+    public static Map<PrestadorServico, List<Local>> getPrestadorLocaisMap() {
+        return prestadorLocaisMap;
+    }
+
     public void adicionarLocalMap(Local local) {
         locaisRecolha.add(local);
         localPrestadorMap.put(local, this);
