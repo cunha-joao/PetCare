@@ -14,6 +14,16 @@ public class Servico {
         this.produtosAssociados = new ArrayList<>();
     }
 
+    //Getters
+
+    public TipoServico getTipo() {
+        return tipo;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
     public void adicionarProdutoAssociado(String produto) {
         produtosAssociados.add(produto);
     }

@@ -1,8 +1,6 @@
 package gui.metodos;
 
-import bll.PrestadorServico;
-import bll.TipoUtilizador;
-import bll.Utilizador;
+import bll.*;
 import gui.menus.*;
 
 import javax.swing.*;
@@ -76,7 +74,7 @@ public class loginPanel {
                         .equals(password)) {
                     // Cria um objeto com os detalhes lidos do arquivo
                     if(Objects.equals(userDetails[8], TipoUtilizador.ADMINISTRADOR.toString())){
-                        return new PrestadorServico(
+                        return new Administrador(
                                 username, // Supondo que o username é o primeiro elemento
                                 password, // Supondo que a password é o segundo elemento
                                 userDetails[2], // Nome
@@ -88,7 +86,7 @@ public class loginPanel {
                                 TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
                         );
                     }else if(Objects.equals(userDetails[8], TipoUtilizador.VETERINARIO.toString())){
-                        return new PrestadorServico(
+                        return new Veterinario(
                                 username, // Supondo que o username é o primeiro elemento
                                 password, // Supondo que a password é o segundo elemento
                                 userDetails[2], // Nome
@@ -100,7 +98,7 @@ public class loginPanel {
                                 TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
                         );
                     }else if(Objects.equals(userDetails[8], TipoUtilizador.EDUCADOR.toString())){
-                        return new PrestadorServico(
+                        return new Educador(
                                 username, // Supondo que o username é o primeiro elemento
                                 password, // Supondo que a password é o segundo elemento
                                 userDetails[2], // Nome
@@ -112,7 +110,7 @@ public class loginPanel {
                                 TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
                         );
                     } else if(Objects.equals(userDetails[8], TipoUtilizador.AUXILIAR.toString())){
-                        return new PrestadorServico(
+                        return new Auxiliar(
                                 username, // Supondo que o username é o primeiro elemento
                                 password, // Supondo que a password é o segundo elemento
                                 userDetails[2], // Nome
@@ -124,7 +122,7 @@ public class loginPanel {
                                 TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
                         );
                     }else if(Objects.equals(userDetails[8], TipoUtilizador.SECRETARIADO.toString())){
-                        return new PrestadorServico(
+                        return new Secretario(
                                 username, // Supondo que o username é o primeiro elemento
                                 password, // Supondo que a password é o segundo elemento
                                 userDetails[2], // Nome
@@ -136,7 +134,7 @@ public class loginPanel {
                                 TipoUtilizador.fromString(userDetails[8]) // Tipo de Utilizador
                         );
                     }else if(Objects.equals(userDetails[8], TipoUtilizador.CLIENTE.toString())){
-                        return new PrestadorServico(
+                        return new Cliente(
                                 username, // Supondo que o username é o primeiro elemento
                                 password, // Supondo que a password é o segundo elemento
                                 userDetails[2], // Nome
