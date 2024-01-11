@@ -1,4 +1,4 @@
-package gui;
+package gui.menus;
 
 import bll.Utilizador;
 
@@ -6,21 +6,23 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class menuAuxiliar extends JFrame{
-    private JPanel menuAuxiliar;
+public class menuCliente extends JFrame{
+    private JPanel menuCli;
+    private JButton marcacaoButton;
+    private JButton pagarServicoButton;
     private JButton consultarMarcacoesButton;
     private JButton sairButton;
 
-    public menuAuxiliar(Utilizador utilizador){
+    public menuCliente(Utilizador utilizador){
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuAuxiliar.this.dispose();
+                menuCliente.this.dispose();
             }
         });
     }
 
     public JPanel getPanel() {
-        return menuAuxiliar;
+        return menuCli;
     }
 }
