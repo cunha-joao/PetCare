@@ -7,6 +7,8 @@ import bll.Utilizador;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class menuPrestador extends JFrame{
@@ -32,6 +34,47 @@ public class menuPrestador extends JFrame{
                 } else {
                     // Tratar o caso em que utilizadorAtual não é um PrestadorServico
                 }
+            }
+        });
+        consultarDadosPessoaisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (utilizadorAtual != null) {
+                    String dados = "Nome de Utilizador: " + utilizadorAtual.getNomeUtilizador() + "\n" +
+                            "Nome: " + utilizadorAtual.getNome() + "\n" +
+                            "Número do Cartão de Cidadão: " + utilizadorAtual.getNumeroCartaoCidadao() + "\n" +
+                            "Número Fiscal: " + utilizadorAtual.getNumeroFiscal() + "\n" +
+                            "Telefone: " + utilizadorAtual.getTelefone() + "\n" +
+                            "Morada: " + utilizadorAtual.getMorada() + "\n" +
+                            "Localidade: " + utilizadorAtual.getLocalidade() + "\n" +
+                            "Tipo: " + utilizadorAtual.getTipo();
+                    JOptionPane.showMessageDialog(null, dados, "Dados Pessoais", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        alterarDadosPessoaisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Abre a interface de alteração de dados pessoais
+                alterarDadosPessoais alterarDados = new alterarDadosPessoais(utilizadorAtual);
+                alterarDados.setVisible(true);
+
+                // Oculta a interface atual
+                menuPrestador.this.setVisible(false);
+
+                // Adiciona um WindowListener para tornar visível a interface menuPrestador quando a interface alterarDadosPessoais for fechada
+                alterarDados.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        menuPrestador.this.setVisible(true);
+                    }
+                });
+            }
+        });
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuPrestador.this.dispose();
             }
         });
     }

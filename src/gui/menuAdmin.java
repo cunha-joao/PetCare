@@ -3,6 +3,8 @@ package gui;
 import bll.Utilizador;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class menuAdmin extends JFrame{
     private JPanel menuAdmin;
@@ -15,7 +17,14 @@ public class menuAdmin extends JFrame{
     private JButton consultarMenuDeAuxiliarButton;
     private JButton sairButton;
 
-    public menuAdmin(Utilizador utilizador){}
+    public menuAdmin(Utilizador utilizador){
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menuAdmin.this.dispose();
+            }
+        });
+    }
 
     public JPanel getPanel() {
         return menuAdmin;

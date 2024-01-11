@@ -20,30 +20,29 @@ public class loginPanel {
     private JPasswordField password;
     private JButton entrarButton;
     private JButton registarButton;
+    private JFrame currentFrame; // Referência ao JFrame pai
 
-    private JFrame parentFrame; // Referência ao JFrame pai
-
-    public loginPanel(JFrame parentFrame) {
-        this.parentFrame = parentFrame;
+    public loginPanel(JFrame frameLogin) {
+        this.currentFrame = frameLogin;
         registarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new JFrame("Registar");
-                adicionarUtilizador utilizador = new adicionarUtilizador(frame);
-                frame.setContentPane(utilizador.getPanel());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
-                frame.pack();
-                frame.setVisible(true);
+                JFrame frameAdicionar = new JFrame("Registar");
+                adicionarUtilizador adicionarUtil = new adicionarUtilizador(frameAdicionar);
+                adicionarUtil.setContentPane(adicionarUtil.getPanel());
+                adicionarUtil.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
+                adicionarUtil.pack();
+                adicionarUtil.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
-                frame.addWindowListener(new WindowAdapter() {
+                adicionarUtil.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
             }
@@ -52,14 +51,16 @@ public class loginPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Utilizador util = login(utilizador.getText(), new String(password.getPassword()));
-                    if (util != null) {
-                        abrirInterface(util); // Abre a interface com base no tipo
+                    Utilizador utilizadorLogin = login(utilizador.getText(), new
+                            String(password.getPassword()));
+                    if (utilizadorLogin != null) {
+                        abrirInterface(utilizadorLogin); // Abre a interface com base no tipo
                     } else {
                         JOptionPane.showMessageDialog(Login, "Utilizador ou senha incorretos!");
                     }
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(Login, "Erro ao ler o ficheiro: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(Login, "Erro ao ler o ficheiro: " +
+                            ex.getMessage());
                 }
             }
         });
@@ -70,7 +71,8 @@ public class loginPanel {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(";");
-                if (userDetails.length >= 3 && userDetails[0].equals(username) && userDetails[1].equals(password)) {
+                if (userDetails.length >= 3 && userDetails[0].equals(username) && userDetails[1]
+                        .equals(password)) {
                     // Cria um objeto com os detalhes lidos do arquivo
                     if(Objects.equals(userDetails[8], TipoUtilizador.ADMINISTRADOR.toString())){
                         return new PrestadorServico(
@@ -174,14 +176,14 @@ public class loginPanel {
                 menuAdministrador.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuAdministrador.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
@@ -194,14 +196,14 @@ public class loginPanel {
                 menuVet.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuVet.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
@@ -214,14 +216,14 @@ public class loginPanel {
                 menuEdu.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuEdu.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
@@ -234,14 +236,14 @@ public class loginPanel {
                 menuAux.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuAux.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
@@ -254,14 +256,14 @@ public class loginPanel {
                 menuSecre.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuSecre.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
@@ -274,14 +276,14 @@ public class loginPanel {
                 menuCli.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuCli.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
@@ -294,14 +296,14 @@ public class loginPanel {
                 menuPre.setVisible(true);
 
                 // Oculta a janela de login
-                parentFrame.setVisible(false);
+                currentFrame.setVisible(false);
 
                 // Adiciona um WindowListener para saber quando a janela de registro é fechada
                 menuPre.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
                         // Torna a janela de login visível novamente
-                        parentFrame.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
                 break;
