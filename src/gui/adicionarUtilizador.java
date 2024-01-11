@@ -3,11 +3,13 @@ package gui;
 import bll.TipoUtilizador;
 import bll.Utilizador;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 
-public class adicionarUtilizador {
+public class adicionarUtilizador extends JFrame{
     private JPanel Registar;
     private JButton registarButton;
     private JTextField utilizador;
@@ -18,16 +20,20 @@ public class adicionarUtilizador {
     private JTextField telefone;
     private JTextField morada;
     private JTextField localidade;
-    private JButton voltarButton;
+    private JButton sairButton;
     private JComboBox tipoUtilizadores;
+    private JFrame currentFrame;
 
-    private JFrame currentFrame; // Referência ao JFrame atual
-
-    public adicionarUtilizador(JFrame currentFrame) {
-        this.currentFrame = currentFrame;
+    public adicionarUtilizador(JFrame frame) {
+        this.currentFrame = frame;
 
         registarButton.addActionListener(e -> registrarUtilizador());
-        voltarButton.addActionListener(e -> currentFrame.dispose()); // Fecha a janela atual
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adicionarUtilizador.this.dispose();
+            }
+        });
     }
 
     private void registrarUtilizador() {
