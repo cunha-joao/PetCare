@@ -1,5 +1,6 @@
 package gui.menus;
 
+import bll.Administrador;
 import bll.Cliente;
 import bll.Marcacao;
 import bll.Utilizador;
