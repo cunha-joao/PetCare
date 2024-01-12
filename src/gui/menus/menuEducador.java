@@ -9,12 +9,17 @@ import java.awt.event.ActionListener;
 public class menuEducador extends JFrame{
     private JPanel menuEdu;
     private JButton sairButton;
+    private Utilizador utilizadorAtual;
+    private JFrame currentFrame;
 
-    public menuEducador(Utilizador utilizador){
+    public menuEducador(Utilizador utilizador, JFrame eduFrame){
+        this.utilizadorAtual = utilizador;
+        this.currentFrame = eduFrame;
+
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuEducador.this.dispose();
+                currentFrame.dispose();
             }
         });
     }

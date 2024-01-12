@@ -22,14 +22,14 @@ public class adicionarUtilizador extends JFrame{
     private JComboBox tipoUtilizadores;
     private JFrame currentFrame;
 
-    public adicionarUtilizador(JFrame frame) {
-        this.currentFrame = frame;
+    public adicionarUtilizador(JFrame registarFrame) {
+        this.currentFrame = registarFrame;
 
         registarButton.addActionListener(e -> registrarUtilizador());
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adicionarUtilizador.this.dispose();
+                currentFrame.dispose();
             }
         });
     }
@@ -50,19 +50,6 @@ public class adicionarUtilizador extends JFrame{
                     localidade.getText(),
                     tipoSelecionado
             );
-
-            // Verifica se o tipo selecionado é "Prestador"
-            if (tipoSelecionado == TipoUtilizador.PRESTADOR) {
-                JFrame frameLocal = new JFrame("Adicionar Local");
-                adicionarLocal localPanel = new adicionarLocal(frameLocal);
-
-                // Cria um JDialog modal
-                JDialog localDialog = new JDialog(currentFrame, "Adicionar Local", true);
-                localDialog.setContentPane(localPanel.getPanel());
-                localDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-                localDialog.pack();
-                localDialog.setVisible(true); // Este método bloqueará até que o JDialog seja fechado
-            }
 
             Utilizador.adicionarUtilizador(novoUtilizador);
             JOptionPane.showMessageDialog(Registar, "Utilizador registrado com sucesso!");

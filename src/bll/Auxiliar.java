@@ -17,9 +17,8 @@ public class Auxiliar extends Utilizador implements Serializable {
     }
 
     public List<Marcacao> consultarMarcacoes() {
-        // Ensure that marcacoes is not null and return it
         if (marcacoes == null) {
-            marcacoes = new ArrayList<>(); // Initialize the list if it's null
+            marcacoes = new ArrayList<>();
         }
         return marcacoes;
     }

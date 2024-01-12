@@ -16,16 +16,8 @@ public class Cliente extends Utilizador implements Serializable {
         this.servicosContratados = new ArrayList<>();
     }
 
-    public List<Marcacao> consultarMarcacoes() {
+    public List<Marcacao> getMarcacoes() {
         return marcacoes;
-    }
-
-    public List<Servico> consultarServiçosContratados() {
-        return servicosContratados;
-    }
-
-    public void realizarPagamento(Marcacao marcacao, double valor) {
-        marcacao.setEstado(Estado.CONFIRMADO);
     }
 }
 

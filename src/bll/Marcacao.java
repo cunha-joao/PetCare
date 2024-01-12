@@ -25,42 +25,34 @@ public class Marcacao {
 
     //Getters
     public Cliente getCliente() {
-
         return cliente;
     }
 
     public PrestadorServico getPrestadorServico() {
-
         return prestadorServico;
     }
 
     public Local getLocal() {
-
         return local;
     }
 
     public Funcionario getFuncionario() {
-
         return funcionario;
     }
 
     public Servico getServico() {
-
         return servico;
     }
 
     public Date getDataHora() {
-
         return dataHora;
     }
 
     public Estado getEstado() {
-
         return estado;
     }
 
     public void setEstado(Estado estado) {
-
         this.estado = estado;
     }
 }

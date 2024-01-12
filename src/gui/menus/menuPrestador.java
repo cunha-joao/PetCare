@@ -2,7 +2,7 @@ package gui.menus;
 
 import bll.*;
 import gui.metodos.alterarDadosPessoais;
-import gui.metodos.presconsultarlocais;
+import gui.metodos.consultarLocais;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -21,18 +21,17 @@ public class menuPrestador extends JFrame{
     private JButton adicionarFuncionariosALocalButton;
     private JButton sairButton;
     private Utilizador utilizadorAtual;
+    private JFrame currentFrame;
 
-    public menuPrestador(Utilizador utilizador) {
+    public menuPrestador(Utilizador utilizador, JFrame presFrame) {
         this.utilizadorAtual = utilizador;
+        this.currentFrame = presFrame;
 
         consultarLocaisDeRecolhaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (utilizadorAtual instanceof PrestadorServico prestador) {
-                    List<Local> locais = prestador.consultarLocaisRecolha();
-                    mostrarLocais(locais);
-                } else {
-                    // Tratar o caso em que utilizadorAtual não é um PrestadorServico
+                if (utilizadorAtual instanceof PrestadorServico) {
+                    mostrarLocais();
                 }
             }
         });
@@ -55,32 +54,28 @@ public class menuPrestador extends JFrame{
         alterarDadosPessoaisButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Abre a interface de alteração de dados pessoais
-                alterarDadosPessoais alterarDados = new alterarDadosPessoais(utilizadorAtual);
-                alterarDados.setContentPane(alterarDados.getPanel());
-                alterarDados.setVisible(true);
-                alterarDados.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // Fecha apenas esta janela
-                alterarDados.pack();
-                alterarDados.setVisible(true);
+                JFrame alterarDadosFrame = new JFrame("Alterar Dados Pessoais");
+                alterarDadosPessoais alterarDados = new alterarDadosPessoais(utilizadorAtual, alterarDadosFrame);
+                alterarDadosFrame.setContentPane(alterarDados.getPanel());
+                alterarDadosFrame.setVisible(true);
+                alterarDadosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                alterarDadosFrame.pack();
+                alterarDadosFrame.setVisible(true);
 
-                // Oculta a interface atual
-                menuPrestador.this.setVisible(false);
+                currentFrame.setVisible(false);
 
-                // Adiciona um WindowListener para tornar visível a interface menuPrestador quando a interface alterarDadosPessoais for fechada
-                alterarDados.addWindowListener(new WindowAdapter() {
+                alterarDadosFrame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e) {
-                        menuPrestador.this.setVisible(true);
+                        currentFrame.setVisible(true);
                     }
                 });
             }
         });
-
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (utilizadorAtual instanceof PrestadorServico) {
-                    // Correct the variable name here
                     PrestadorServico prestador = (PrestadorServico) utilizadorAtual;
                     List<Marcacao> marcacoes = prestador.consultarMarcacoes();
 
@@ -88,14 +83,12 @@ public class menuPrestador extends JFrame{
                         JOptionPane.showMessageDialog(null, "Ainda não tem nenhuma marcação.", "Sem Marcações", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         StringBuilder dadosMarcacoes = new StringBuilder();
-
                         for (Marcacao marcacao : marcacoes) {
                             dadosMarcacoes.append("Data: ").append(marcacao.getDataHora())
                                     .append(", Serviço: ").append(marcacao.getServico().getTipo())
                                     .append(", Estado: ").append(marcacao.getEstado())
                                     .append("\n");
                         }
-
                         JOptionPane.showMessageDialog(null, dadosMarcacoes.toString(), "Marcações", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
@@ -103,34 +96,33 @@ public class menuPrestador extends JFrame{
                 }
             }
         });
-
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuPrestador.this.dispose();
+                currentFrame.dispose();
             }
         });
     }
 
+    private void mostrarLocais() {
+        PrestadorServico prestador = (PrestadorServico) utilizadorAtual;
 
-    private void mostrarLocais(List<Local> locais) {
-        PrestadorServico prestador = (PrestadorServico) utilizadorAtual; // Cast para PrestadorServico
-        presconsultarlocais telaLocais = new presconsultarlocais(prestador);
-        telaLocais.setVisible(true);
+        JFrame locaisFrame = new JFrame("Consultar Locais");
+        consultarLocais consultarLocaisInfo = new consultarLocais(prestador, locaisFrame);
+        locaisFrame.setContentPane(consultarLocaisInfo.getPanel());
+        locaisFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        locaisFrame.pack();
+        locaisFrame.setVisible(true);
+
+        currentFrame.setVisible(false);
+
+        locaisFrame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                currentFrame.setVisible(true);
+            }
+        });
     }
-
-
-// ... Restante do código da classe menuPrestador ...
-
-  /*  private void mostrarLocais(List<Local> locais) {
-        // Implementar a lógica para mostrar os locais
-        // Exemplo: pode usar um JOptionPane para exibir os locais
-        StringBuilder locaisStr = new StringBuilder();
-        for (Local local : locais) {
-            locaisStr.append(local.toString()).append("\n"); // Assumindo que a classe Local tem um método toString adequado
-        }
-        JOptionPane.showMessageDialog(this, locaisStr.toString());
-    }*/
 
     public JPanel getPanel() {
         return menuPres;

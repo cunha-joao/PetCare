@@ -1,6 +1,5 @@
 package gui.menus;
 
-import bll.Administrador;
 import bll.Cliente;
 import bll.Marcacao;
 import bll.Utilizador;
@@ -18,22 +17,18 @@ public class menuCliente extends JFrame{
     private JButton consultarMarcacoesButton;
     private JButton sairButton;
     private Utilizador utilizadorAtual;
+    private JFrame currentFrame;
 
-    public menuCliente(Utilizador utilizador){
+    public menuCliente(Utilizador utilizador, JFrame cliFrame){
         this.utilizadorAtual = utilizador;
-        sairButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                menuCliente.this.dispose();
-            }
-        });
+        this.currentFrame = cliFrame;
 
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (utilizadorAtual instanceof Cliente) {
                     Cliente cliente = (Cliente) utilizadorAtual;
-                    List<Marcacao> marcacoes = cliente.consultarMarcacoes();
+                    List<Marcacao> marcacoes = cliente.getMarcacoes();
 
                     if (marcacoes.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "Ainda não tem nenhuma marcação.", "Sem Marcações", JOptionPane.INFORMATION_MESSAGE);
@@ -54,7 +49,12 @@ public class menuCliente extends JFrame{
                 }
             }
         });
-
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.dispose();
+            }
+        });
     }
 
     public JPanel getPanel() {
