@@ -1,8 +1,6 @@
 package gui.menus;
 
-import bll.Local;
-import bll.PrestadorServico;
-import bll.Utilizador;
+import bll.*;
 import gui.metodos.alterarDadosPessoais;
 import gui.metodos.presconsultarlocais;
 
@@ -77,6 +75,35 @@ public class menuPrestador extends JFrame{
                 });
             }
         });
+
+        consultarMarcacoesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (utilizadorAtual instanceof PrestadorServico) {
+                    // Correct the variable name here
+                    PrestadorServico prestador = (PrestadorServico) utilizadorAtual;
+                    List<Marcacao> marcacoes = prestador.consultarMarcacoes();
+
+                    if (marcacoes.isEmpty()) {
+                        JOptionPane.showMessageDialog(null, "Ainda não tem nenhuma marcação.", "Sem Marcações", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        StringBuilder dadosMarcacoes = new StringBuilder();
+
+                        for (Marcacao marcacao : marcacoes) {
+                            dadosMarcacoes.append("Data: ").append(marcacao.getDataHora())
+                                    .append(", Serviço: ").append(marcacao.getServico().getTipo())
+                                    .append(", Estado: ").append(marcacao.getEstado())
+                                    .append("\n");
+                        }
+
+                        JOptionPane.showMessageDialog(null, dadosMarcacoes.toString(), "Marcações", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "A funcionalidade de consultar marcações é apenas para clientes.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        });
+
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

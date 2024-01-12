@@ -3,9 +3,12 @@ package bll;
 import java.util.ArrayList;
 import java.util.*;
 
+
 public class PrestadorServico extends Utilizador {
     private List<Local> locaisRecolha;
     private List<Funcionario> funcionarios;
+
+    private List<Marcacao> marcacoes;
 
     // Map que associa Local a PrestadorServico
     private static Map<Local, PrestadorServico> localPrestadorMap = new HashMap<>();
@@ -22,6 +25,14 @@ public class PrestadorServico extends Utilizador {
                 morada, localidade, tipo);
         this.locaisRecolha = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
+    }
+
+    public List<Marcacao> consultarMarcacoes() {
+        // Ensure that marcacoes is not null and return it
+        if (marcacoes == null) {
+            marcacoes = new ArrayList<>(); // Initialize the list if it's null
+        }
+        return marcacoes;
     }
 
     public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
