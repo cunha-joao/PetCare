@@ -16,7 +16,6 @@ public class Utilizador implements Serializable {
     private String localidade;
     private TipoUtilizador tipo;
 
-    // Construtor
     public Utilizador(String nomeUtilizador, String password, String nome, String numeroCartaoCidadao,
                       String numeroFiscal, String telefone, String morada, String localidade,
                       TipoUtilizador tipo) {
@@ -99,11 +98,6 @@ public class Utilizador implements Serializable {
         return tipo;
     }
 
-    public void setTipo(TipoUtilizador tipo) {
-        this.tipo = tipo;
-    }
-
-    // Método para adicionar um utilizador a um ficheiro
     public static void adicionarUtilizador(Utilizador utilizador) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("utilizadores.txt", true))) {
             writer.write(utilizador.toString());
@@ -111,7 +105,6 @@ public class Utilizador implements Serializable {
         }
     }
 
-    // Método toString para formatar a saída do utilizador
     @Override
     public String toString() {
         return nomeUtilizador + ";" + password + ";" + nome + ";" + numeroCartaoCidadao + ";" +

@@ -9,16 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class presconsultarlocais extends JFrame {
+public class consultarLocais extends JFrame {
+    private JPanel consultarLocais;
     private JComboBox<String> comboBoxLocais;
     private JTextArea textAreaInfo;
+    private JButton sairButton;
     private PrestadorServico prestador;
+    private JFrame currentFrame;
 
-    public presconsultarlocais(PrestadorServico prestador) {
+    public consultarLocais(PrestadorServico prestador, JFrame locaisFrame) {
         this.prestador = prestador;
-        setTitle("Consultar Locais");
-        setSize(400, 300);
-        setLayout(new BorderLayout());
+        this.currentFrame = locaisFrame;
 
         comboBoxLocais = new JComboBox<>();
         textAreaInfo = new JTextArea();
@@ -28,15 +29,13 @@ public class presconsultarlocais extends JFrame {
         List<Local> locais = PrestadorServico.getPrestadorLocaisMap().get(prestador);
 
         if (locais == null || locais.isEmpty()) {
-            System.out.println("No locations found for prestador: " + prestador);
+            System.out.println("No locations found for Prestador: " + prestador);
             comboBoxLocais.addItem("Nenhum local encontrado");
         } else {
             for (Local local : locais) {
                 comboBoxLocais.addItem(local.toString());
             }
         }
-
-
 
         comboBoxLocais.addActionListener(new ActionListener() {
             @Override
@@ -58,9 +57,18 @@ public class presconsultarlocais extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.dispose();
+            }
+        });
     }
 
-
+    public JPanel getPanel() {
+        return consultarLocais;
+    }
 }
 
 

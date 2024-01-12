@@ -15,6 +15,6 @@ public enum TipoUtilizador {
                 return b;
             }
         }
-        return null; // ou lance uma exceção se o texto não for válido
+        return null;
     }
 }

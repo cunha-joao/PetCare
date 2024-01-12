@@ -6,10 +6,12 @@ import bll.Utilizador;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class menuAdmin extends JFrame{
     private JPanel menuAdmin;
-    private JButton consultarQuantidadeDeServiçosButton;
+    private JButton consultarQuantidadeDeServicosButton;
     private JButton consultarValoresPagosButton;
     private JButton desativarEmpresaButton;
     private JButton desativarPrestadorButton;
@@ -17,44 +19,77 @@ public class menuAdmin extends JFrame{
     private JButton consultarMenuDePrestadorButton;
     private JButton consultarMenuDeAuxiliarButton;
     private JButton sairButton;
+    private Utilizador utilizadorAtual;
+    private JFrame currentFrame;
 
-    public menuAdmin(Utilizador utilizador){
-        sairButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                menuAdmin.this.dispose();
-            }
-        });
+    public menuAdmin(Utilizador utilizador, JFrame adminFrame){
+        this.utilizadorAtual = utilizador;
+        this.currentFrame = adminFrame;
+
         consultarMenuDeClienteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuCliente menuCli = new menuCliente(utilizador);
-                menuCli.setContentPane(menuCli.getPanel());
-                menuCli.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                menuCli.pack();
-                menuCli.setVisible(true);
+                JFrame cliFrame = new JFrame("Menu de Cliente");
+                menuCliente menuCli = new menuCliente(utilizador, cliFrame);
+                cliFrame.setContentPane(menuCli.getPanel());
+                cliFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                cliFrame.pack();
+                cliFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                cliFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        currentFrame.setVisible(true);
+                    }
+                });
             }
         });
-
         consultarMenuDePrestadorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuPrestador menuPres = new menuPrestador(utilizador);
-                menuPres.setContentPane(menuPres.getPanel());
-                menuPres.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                menuPres.pack();
-                menuPres.setVisible(true);
+                JFrame presFrame = new JFrame("Menu de Prestador");
+                menuPrestador menuPres = new menuPrestador(utilizador, presFrame);
+                presFrame.setContentPane(menuPres.getPanel());
+                presFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                presFrame.pack();
+                presFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                presFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        currentFrame.setVisible(true);
+                    }
+                });
             }
         });
-
         consultarMenuDeAuxiliarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuAuxiliar menuAux = new menuAuxiliar(utilizador);
-                menuAux.setContentPane(menuAux.getPanel());
-                menuAux.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                menuAux.pack();
-                menuAux.setVisible(true);
+                JFrame auxFrame = new JFrame("Menu de Auxiliar");
+                menuAuxiliar menuAux = new menuAuxiliar(utilizador, auxFrame);
+                auxFrame.setContentPane(menuAux.getPanel());
+                auxFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                auxFrame.pack();
+                auxFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                auxFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        currentFrame.setVisible(true);
+                    }
+                });
+            }
+        });
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.dispose();
             }
         });
     }

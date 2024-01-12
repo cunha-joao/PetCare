@@ -15,15 +15,11 @@ public class menuAuxiliar extends JFrame{
     private JButton consultarMarcacoesButton;
     private JButton sairButton;
     private Utilizador utilizadorAtual;
+    private JFrame currentFrame;
 
-    public menuAuxiliar(Utilizador utilizador){
+    public menuAuxiliar(Utilizador utilizador, JFrame auxFrame){
         this.utilizadorAtual = utilizador;
-        sairButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                menuAuxiliar.this.dispose();
-            }
-        });
+        this.currentFrame = auxFrame;
 
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
@@ -52,7 +48,12 @@ public class menuAuxiliar extends JFrame{
                 }
             }
         });
-
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.dispose();
+            }
+        });
     }
 
     public JPanel getPanel() {

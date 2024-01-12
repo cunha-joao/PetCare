@@ -24,7 +24,7 @@ public class Servico {
         return preco;
     }
 
-    public void adicionarProdutoAssociado(String produto) {
-        produtosAssociados.add(produto);
+    public List<String> getProdutosAssociados() {
+        return produtosAssociados;
     }
 }
