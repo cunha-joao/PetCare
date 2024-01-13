@@ -1,6 +1,7 @@
 package gui.menus;
 
 import bll.*;
+import gui.metodos.adicionarFuncionarios;
 import gui.metodos.adicionarLocal;
 import gui.metodos.alterarDadosPessoais;
 import gui.metodos.consultarLocais;
@@ -85,6 +86,26 @@ public class menuPrestador extends JFrame{
                 currentFrame.setVisible(false);
 
                 consultarLocaisFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e){
+                        currentFrame.setVisible(true);
+                    }
+                });
+            }
+        });
+        adicionarFuncionariosALocalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame adFuncFrame = new JFrame("Adicionar Funcionário a Local de Recolha");
+                adicionarFuncionarios adFunc = new adicionarFuncionarios(utilizadorAtual, adFuncFrame);
+                adFuncFrame.setContentPane(adFunc.getPanel());
+                adFuncFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                adFuncFrame.pack();
+                adFuncFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                adFuncFrame.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent e){
                         currentFrame.setVisible(true);

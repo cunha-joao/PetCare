@@ -74,12 +74,11 @@ public class adicionarLocal extends JFrame{
 
         Local novoLocal = new Local(moradaValue, localidadeValue, telefoneValue);
 
-        // Retrieve the selected Funcionario and add it to the Local
         Funcionario selectedFuncionario = getFuncionarioByName((String) funcionarios.getSelectedItem());
         if (selectedFuncionario != null) {
             novoLocal.getFuncionarios().add(selectedFuncionario);
+            System.out.println("Funcionario adicionado à lista: " + novoLocal.getFuncionarios());
         }
-        // Add selected services to the Local
         if (educacao.isSelected()) {
             novoLocal.getServicos().add(new Servico(TipoServico.EDUCACAO));
         }
@@ -92,13 +91,20 @@ public class adicionarLocal extends JFrame{
         if (banho.isSelected()) {
             novoLocal.getServicos().add(new Servico(TipoServico.BANHO));
         }
-        // Add the Local to the PrestadorServico's locaisRecolha list
         if (utilizadorAtual instanceof PrestadorServico prestador) {
+            // Check if the selectedFuncionario is not already in the list
+            List<Funcionario> funcionarios = prestador.getFuncionarios();
+            if (!funcionarios.contains(selectedFuncionario)) {
+                funcionarios.add(selectedFuncionario);
+            }
+            // Add the Local to the PrestadorServico's locaisRecolha list
             prestador.getLocaisRecolha().add(novoLocal);
-            System.out.println("Local Novo: " + novoLocal.getMorada() + " " + novoLocal.getLocalidade() + " "
+            PrestadorServico.getLocalPrestadorMap().put(novoLocal, prestador);
+            PrestadorServico.getPrestadorLocaisMap().computeIfAbsent(prestador, k -> new ArrayList<>()).add(novoLocal);
+
+            System.out.println("Local Novo\n" + novoLocal.getMorada() + " " + novoLocal.getLocalidade() + " "
                     + novoLocal.getNumeroTelefone() + " " + novoLocal.getFuncionarios() + " " + novoLocal.getServicos());
         }
-
         JOptionPane.showMessageDialog(adicionarLocal, "Local adicionado com sucesso!");
     }
 

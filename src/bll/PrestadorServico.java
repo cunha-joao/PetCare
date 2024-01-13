@@ -19,17 +19,12 @@ public class PrestadorServico extends Utilizador {
         this.locaisRecolha = new ArrayList<>();
         this.funcionarios = new ArrayList<>();
     }
-
-    public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
-        return localPrestadorMap;
-    }
-
-    public static Map<PrestadorServico, List<Local>> getPrestadorLocaisMap() {
-        return prestadorLocaisMap;
-    }
-
     public List<Local> getLocaisRecolha() {
         return locaisRecolha;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
     }
 
     public List<Marcacao> consultarMarcacoes() {
@@ -37,5 +32,13 @@ public class PrestadorServico extends Utilizador {
             marcacoes = new ArrayList<>();
         }
         return marcacoes;
+    }
+
+    public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
+        return localPrestadorMap;
+    }
+
+    public static Map<PrestadorServico, List<Local>> getPrestadorLocaisMap() {
+        return prestadorLocaisMap;
     }
 }
