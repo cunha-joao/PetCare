@@ -8,9 +8,9 @@ public class Servico {
     private List<String> produtosAssociados;
 
     // Construtor
-    public Servico(TipoServico tipo, double preco) {
+    public Servico(TipoServico tipo) {
         this.tipo = tipo;
-        this.preco = preco;
+        this.preco = 14.99;
         this.produtosAssociados = new ArrayList<>();
     }
 

@@ -1,6 +1,7 @@
 package gui.menus;
 
 import bll.*;
+import gui.metodos.adicionarLocal;
 import gui.metodos.alterarDadosPessoais;
 import gui.metodos.consultarLocais;
 
@@ -27,51 +28,6 @@ public class menuPrestador extends JFrame{
         this.utilizadorAtual = utilizador;
         this.currentFrame = presFrame;
 
-        consultarLocaisDeRecolhaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (utilizadorAtual instanceof PrestadorServico) {
-                    mostrarLocais();
-                }
-            }
-        });
-        consultarDadosPessoaisButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (utilizadorAtual != null) {
-                    String dados = "Nome de Utilizador: " + utilizadorAtual.getNomeUtilizador() + "\n" +
-                            "Nome: " + utilizadorAtual.getNome() + "\n" +
-                            "Número do Cartão de Cidadão: " + utilizadorAtual.getNumeroCartaoCidadao() + "\n" +
-                            "Número Fiscal: " + utilizadorAtual.getNumeroFiscal() + "\n" +
-                            "Telefone: " + utilizadorAtual.getTelefone() + "\n" +
-                            "Morada: " + utilizadorAtual.getMorada() + "\n" +
-                            "Localidade: " + utilizadorAtual.getLocalidade() + "\n" +
-                            "Tipo: " + utilizadorAtual.getTipo();
-                    JOptionPane.showMessageDialog(null, dados, "Dados Pessoais", JOptionPane.INFORMATION_MESSAGE);
-                }
-            }
-        });
-        alterarDadosPessoaisButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame alterarDadosFrame = new JFrame("Alterar Dados Pessoais");
-                alterarDadosPessoais alterarDados = new alterarDadosPessoais(utilizadorAtual, alterarDadosFrame);
-                alterarDadosFrame.setContentPane(alterarDados.getPanel());
-                alterarDadosFrame.setVisible(true);
-                alterarDadosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                alterarDadosFrame.pack();
-                alterarDadosFrame.setVisible(true);
-
-                currentFrame.setVisible(false);
-
-                alterarDadosFrame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosing(WindowEvent e) {
-                        currentFrame.setVisible(true);
-                    }
-                });
-            }
-        });
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,30 +52,86 @@ public class menuPrestador extends JFrame{
                 }
             }
         });
+        criarNovoLocalDeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame criarLocalFrame = new JFrame("Adicionar Local");
+                adicionarLocal adLocal = new adicionarLocal(utilizadorAtual, criarLocalFrame);
+                criarLocalFrame.setContentPane(adLocal.getPanel());
+                criarLocalFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                criarLocalFrame.pack();
+                criarLocalFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                criarLocalFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        currentFrame.setVisible(true);
+                    }
+                });
+            }
+        });
+        consultarLocaisDeRecolhaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame consultarLocaisFrame = new JFrame("Consultar Locais de Recolha");
+                consultarLocais conLocais = new consultarLocais(utilizadorAtual, consultarLocaisFrame);
+                consultarLocaisFrame.setContentPane(conLocais.getPanel());
+                consultarLocaisFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                consultarLocaisFrame.pack();
+                consultarLocaisFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                consultarLocaisFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e){
+                        currentFrame.setVisible(true);
+                    }
+                });
+            }
+        });
+        consultarDadosPessoaisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (utilizadorAtual != null) {
+                    String dados = "Nome de Utilizador: " + utilizadorAtual.getNomeUtilizador() + "\n" +
+                            "Nome: " + utilizadorAtual.getNome() + "\n" +
+                            "Número do Cartão de Cidadão: " + utilizadorAtual.getNumeroCartaoCidadao() + "\n" +
+                            "Número Fiscal: " + utilizadorAtual.getNumeroFiscal() + "\n" +
+                            "Telefone: " + utilizadorAtual.getTelefone() + "\n" +
+                            "Morada: " + utilizadorAtual.getMorada() + "\n" +
+                            "Localidade: " + utilizadorAtual.getLocalidade() + "\n" +
+                            "Tipo: " + utilizadorAtual.getTipo();
+                    JOptionPane.showMessageDialog(null, dados, "Dados Pessoais", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        alterarDadosPessoaisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame alterarDadosFrame = new JFrame("Alterar Dados Pessoais");
+                alterarDadosPessoais alterarDados = new alterarDadosPessoais(utilizadorAtual, alterarDadosFrame);
+                alterarDadosFrame.setContentPane(alterarDados.getPanel());
+                alterarDadosFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                alterarDadosFrame.pack();
+                alterarDadosFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                alterarDadosFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosing(WindowEvent e) {
+                        currentFrame.setVisible(true);
+                    }
+                });
+            }
+        });
         sairButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 currentFrame.dispose();
-            }
-        });
-    }
-
-    private void mostrarLocais() {
-        PrestadorServico prestador = (PrestadorServico) utilizadorAtual;
-
-        JFrame locaisFrame = new JFrame("Consultar Locais");
-        consultarLocais consultarLocaisInfo = new consultarLocais(prestador, locaisFrame);
-        locaisFrame.setContentPane(consultarLocaisInfo.getPanel());
-        locaisFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        locaisFrame.pack();
-        locaisFrame.setVisible(true);
-
-        currentFrame.setVisible(false);
-
-        locaisFrame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent e) {
-                currentFrame.setVisible(true);
             }
         });
     }

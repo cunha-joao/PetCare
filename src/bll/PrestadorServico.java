@@ -20,13 +20,6 @@ public class PrestadorServico extends Utilizador {
         this.funcionarios = new ArrayList<>();
     }
 
-    public List<Marcacao> consultarMarcacoes() {
-        if (marcacoes == null) {
-            marcacoes = new ArrayList<>();
-        }
-        return marcacoes;
-    }
-
     public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
         return localPrestadorMap;
     }
@@ -35,7 +28,14 @@ public class PrestadorServico extends Utilizador {
         return prestadorLocaisMap;
     }
 
-    public List<Local> getLocaisRecolha(){
-        return new ArrayList<>(locaisRecolha);
+    public List<Local> getLocaisRecolha() {
+        return locaisRecolha;
+    }
+
+    public List<Marcacao> consultarMarcacoes() {
+        if (marcacoes == null) {
+            marcacoes = new ArrayList<>();
+        }
+        return marcacoes;
     }
 }
