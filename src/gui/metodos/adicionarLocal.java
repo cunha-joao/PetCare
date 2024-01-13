@@ -106,7 +106,7 @@ public class adicionarLocal extends JFrame{
         List<Funcionario> listaFuncionarios = lerUtilizadoresDoFicheiro();
         for(Funcionario f : listaFuncionarios){
             if(f.getNome().equals(nomeFuncionario)){
-                System.out.println("Funcionario selecionado: " + f);
+                System.out.println("Funcionario selecionado\n" + f);
                 return f;
             }
         }

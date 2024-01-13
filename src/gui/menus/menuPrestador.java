@@ -79,7 +79,7 @@ public class menuPrestador extends JFrame{
                 consultarLocais conLocais = new consultarLocais(utilizadorAtual, consultarLocaisFrame);
                 consultarLocaisFrame.setContentPane(conLocais.getPanel());
                 consultarLocaisFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                consultarLocaisFrame.pack();
+                consultarLocaisFrame.setSize(700, 300);
                 consultarLocaisFrame.setVisible(true);
 
                 currentFrame.setVisible(false);
