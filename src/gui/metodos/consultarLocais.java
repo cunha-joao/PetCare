@@ -2,41 +2,57 @@ package gui.metodos;
 
 import bll.Local;
 import bll.PrestadorServico;
+import bll.Utilizador;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.ArrayList;
 import java.util.List;
 
-public class consultarLocais extends JFrame {
+public class consultarLocais{
     private JPanel consultarLocais;
     private JComboBox<String> comboBoxLocais;
     private JTextArea textAreaInfo;
     private JButton sairButton;
-    private PrestadorServico prestador;
+    private Utilizador utilizadorAtual;
     private JFrame currentFrame;
 
-    public consultarLocais(PrestadorServico prestador, JFrame locaisFrame) {
-        this.prestador = prestador;
+    public consultarLocais(Utilizador utilizador, JFrame locaisFrame) {
+        this.utilizadorAtual = utilizador;
         this.currentFrame = locaisFrame;
 
-        comboBoxLocais = new JComboBox<>();
-        textAreaInfo = new JTextArea();
+        //Define the JTextArea
         textAreaInfo.setEditable(false);
-
-        System.out.println("Current prestadorLocaisMap: " + PrestadorServico.getPrestadorLocaisMap());
-        List<Local> locais = PrestadorServico.getPrestadorLocaisMap().get(prestador);
-
-        if (locais == null || locais.isEmpty()) {
-            System.out.println("No locations found for Prestador: " + prestador);
-            comboBoxLocais.addItem("Nenhum local encontrado");
-        } else {
-            for (Local local : locais) {
-                comboBoxLocais.addItem(local.toString());
+        textAreaInfo.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                super.componentResized(e);
+                Dimension size = e.getComponent().getSize();
+                comboBoxLocais.setPreferredSize(new Dimension(size.width, comboBoxLocais.getPreferredSize().height));
+                consultarLocais.revalidate(); // Isso é necessário para atualizar o layout do painel
             }
-        }
+        });
 
+        //Fill the JComboBox
+        List<Local> locais;
+        if (utilizadorAtual instanceof PrestadorServico) {
+            locais = ((PrestadorServico) utilizadorAtual).getLocaisRecolha();
+            if (locais.isEmpty()) {
+                comboBoxLocais.addItem("Nenhum local encontrado");
+            } else {
+                for (Local local : locais) {
+                    comboBoxLocais.addItem(local.getMorada());
+                }
+            }
+        } else {
+            locais = new ArrayList<>();
+            comboBoxLocais.addItem("Utilizador não é um prestador de serviço");
+        }
+        //After selecting an item
         comboBoxLocais.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -45,23 +61,10 @@ public class consultarLocais extends JFrame {
                     Local selectedLocal = locais.get(selectedIdx);
                     textAreaInfo.setText("Morada: " + selectedLocal.getMorada() +
                             "\nLocalidade: " + selectedLocal.getLocalidade() +
-                            "\nNúmero de Telefone: " + selectedLocal.getNumeroTelefone());
-                    textAreaInfo.repaint();
-                    textAreaInfo.revalidate();
+                            "\nNúmero de Telefone: " + selectedLocal.getNumeroTelefone() +
+                            "\nFuncionários: " + selectedLocal.getFuncionarios() +
+                            "\nServiços: " + selectedLocal.getServicos());
                 }
-            }
-        });
-
-        add(comboBoxLocais, BorderLayout.NORTH);
-        add(new JScrollPane(textAreaInfo), BorderLayout.CENTER);
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-
-        sairButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                currentFrame.dispose();
             }
         });
     }

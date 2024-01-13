@@ -10,8 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import bll.PrestadorServico;
 
 public class adicionarLocal extends JFrame{
     private JPanel adicionarLocal;
@@ -24,12 +22,13 @@ public class adicionarLocal extends JFrame{
     private JCheckBox tosquia;
     private JCheckBox banho;
     private JButton adicionarButton;
-    private PrestadorServico prestadorSelecionado;
-    private Funcionario func;
+    private JButton sairButton;
+    private Utilizador utilizadorAtual;
     private JFrame currentFrame;
 
-    public adicionarLocal(JFrame currentFrame) {
-        this.currentFrame = currentFrame;
+    public adicionarLocal(Utilizador utilizador, JFrame criarLocalFrame) {
+        this.utilizadorAtual = utilizador;
+        this.currentFrame = criarLocalFrame;
 
         List<Funcionario> listaFuncionarios = lerUtilizadoresDoFicheiro();
         for (Funcionario funcionario : listaFuncionarios) {
@@ -40,7 +39,12 @@ public class adicionarLocal extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 adicionarLocais();
-                JOptionPane.showMessageDialog(adicionarLocal, "Local adicionado com sucesso!");
+            }
+        });
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.dispose();
             }
         });
     }
@@ -63,7 +67,51 @@ public class adicionarLocal extends JFrame{
         return funcionarios;
     }
 
-    public void adicionarLocais() {}
+    public void adicionarLocais() {
+        String moradaValue = morada.getText();
+        String localidadeValue = localidade.getText();
+        String telefoneValue = telefone.getText();
+
+        Local novoLocal = new Local(moradaValue, localidadeValue, telefoneValue);
+
+        // Retrieve the selected Funcionario and add it to the Local
+        Funcionario selectedFuncionario = getFuncionarioByName((String) funcionarios.getSelectedItem());
+        if (selectedFuncionario != null) {
+            novoLocal.getFuncionarios().add(selectedFuncionario);
+        }
+        // Add selected services to the Local
+        if (educacao.isSelected()) {
+            novoLocal.getServicos().add(new Servico(TipoServico.EDUCACAO));
+        }
+        if (passeio.isSelected()) {
+            novoLocal.getServicos().add(new Servico(TipoServico.PASSEIO));
+        }
+        if (tosquia.isSelected()) {
+            novoLocal.getServicos().add(new Servico(TipoServico.TOSQUIA));
+        }
+        if (banho.isSelected()) {
+            novoLocal.getServicos().add(new Servico(TipoServico.BANHO));
+        }
+        // Add the Local to the PrestadorServico's locaisRecolha list
+        if (utilizadorAtual instanceof PrestadorServico prestador) {
+            prestador.getLocaisRecolha().add(novoLocal);
+            System.out.println("Local Novo: " + novoLocal.getMorada() + " " + novoLocal.getLocalidade() + " "
+                    + novoLocal.getNumeroTelefone() + " " + novoLocal.getFuncionarios() + " " + novoLocal.getServicos());
+        }
+
+        JOptionPane.showMessageDialog(adicionarLocal, "Local adicionado com sucesso!");
+    }
+
+    private Funcionario getFuncionarioByName(String nomeFuncionario) {
+        List<Funcionario> listaFuncionarios = lerUtilizadoresDoFicheiro();
+        for(Funcionario f : listaFuncionarios){
+            if(f.getNome().equals(nomeFuncionario)){
+                System.out.println("Funcionario selecionado: " + f);
+                return f;
+            }
+        }
+        return null;
+    }
 
     public JPanel getPanel() {
         return adicionarLocal;
