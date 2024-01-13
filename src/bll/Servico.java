@@ -27,4 +27,8 @@ public class Servico {
     public List<String> getProdutosAssociados() {
         return produtosAssociados;
     }
+
+    public String toString(){
+        return "Tipo de Serviço: " + tipo.toString() + "; Preço: " + preco + "€; Produtos Associados: " + produtosAssociados;
+    }
 }

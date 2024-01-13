@@ -27,13 +27,13 @@ public class consultarLocais{
 
         //Define the JTextArea
         textAreaInfo.setEditable(false);
-        textAreaInfo.addComponentListener(new ComponentAdapter() {
+        consultarLocais.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
                 Dimension size = e.getComponent().getSize();
                 comboBoxLocais.setPreferredSize(new Dimension(size.width, comboBoxLocais.getPreferredSize().height));
-                consultarLocais.revalidate(); // Isso é necessário para atualizar o layout do painel
+                consultarLocais.revalidate();
             }
         });
 
