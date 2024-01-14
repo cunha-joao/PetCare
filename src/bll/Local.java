@@ -36,4 +36,8 @@ public class Local {
     public List<Servico> getServicos() {
         return servicos;
     }
+
+    public String toString(){
+        return "Morada: " + getMorada() + "; Localidade: " + getLocalidade() + "; Telefone: " + getNumeroTelefone();
+    }
 }

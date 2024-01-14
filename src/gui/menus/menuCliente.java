@@ -49,8 +49,7 @@ public class menuCliente extends JFrame{
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (utilizadorAtual instanceof Cliente) {
-                    Cliente cliente = (Cliente) utilizadorAtual;
+                if (utilizadorAtual instanceof Cliente cliente) {
                     List<Marcacao> marcacoes = cliente.getMarcacoes();
 
                     if (marcacoes.isEmpty()) {
@@ -59,9 +58,13 @@ public class menuCliente extends JFrame{
                         StringBuilder dadosMarcacoes = new StringBuilder();
 
                         for (Marcacao marcacao : marcacoes) {
-                            dadosMarcacoes.append("Data: ").append(marcacao.getDataHora())
-                                    .append(", Serviço: ").append(marcacao.getServico().getTipo())
-                                    .append(", Estado: ").append(marcacao.getEstado())
+                            dadosMarcacoes.append("Cliente:\n").append(marcacao.getCliente())
+                                    .append("\n\nPrestador:\n").append(marcacao.getPrestadorServico())
+                                    .append("\n\nLocal de Recolha:\n").append(marcacao.getLocal())
+                                    .append("\n\nFuncionário:\n").append(marcacao.getFuncionario())
+                                    .append("\n\nData:\n").append(marcacao.getDataHora())
+                                    .append("\n\nServiço:\n").append(marcacao.getServico().getTipo())
+                                    .append("\n\nEstado:\n").append(marcacao.getEstado())
                                     .append("\n");
                         }
 

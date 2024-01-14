@@ -78,6 +78,7 @@ public class adicionarFuncionarios{
 
                                 // Exiba uma mensagem de sucesso ou faça o que for necessário
                                 JOptionPane.showMessageDialog(currentFrame, "Funcionário adicionado ao local com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                                currentFrame.dispose();
                             } else {
                                 JOptionPane.showMessageDialog(currentFrame, "Funcionário não encontrado", "Erro", JOptionPane.ERROR_MESSAGE);
                             }

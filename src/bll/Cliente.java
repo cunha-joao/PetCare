@@ -19,5 +19,11 @@ public class Cliente extends Utilizador implements Serializable {
     public List<Marcacao> getMarcacoes() {
         return marcacoes;
     }
+
+    public String toString(){
+        return "Nome: " + getNome() + "; Número do CC: " + getNumeroCartaoCidadao() + "; Número Fiscal: " +
+                getNumeroFiscal() + "; Telefone: " + getTelefone() + "; Morada: " + getMorada() + "; Localidade: " +
+                getLocalidade();
+    }
 }
 

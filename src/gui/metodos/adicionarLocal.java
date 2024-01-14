@@ -77,7 +77,6 @@ public class adicionarLocal extends JFrame{
         Funcionario selectedFuncionario = getFuncionarioByName((String) funcionarios.getSelectedItem());
         if (selectedFuncionario != null) {
             novoLocal.getFuncionarios().add(selectedFuncionario);
-            System.out.println("Funcionario adicionado à lista: " + novoLocal.getFuncionarios());
         }
         if (educacao.isSelected()) {
             novoLocal.getServicos().add(new Servico(TipoServico.EDUCACAO));
@@ -102,17 +101,17 @@ public class adicionarLocal extends JFrame{
             PrestadorServico.getLocalPrestadorMap().put(novoLocal, prestador);
             PrestadorServico.getPrestadorLocaisMap().computeIfAbsent(prestador, k -> new ArrayList<>()).add(novoLocal);
 
-            System.out.println("Local Novo\n" + novoLocal.getMorada() + " " + novoLocal.getLocalidade() + " "
-                    + novoLocal.getNumeroTelefone() + " " + novoLocal.getFuncionarios() + " " + novoLocal.getServicos());
+            System.out.println("Local Novo: " + novoLocal);
         }
         JOptionPane.showMessageDialog(adicionarLocal, "Local adicionado com sucesso!");
+        currentFrame.dispose();
     }
 
     private Funcionario getFuncionarioByName(String nomeFuncionario) {
         List<Funcionario> listaFuncionarios = lerUtilizadoresDoFicheiro();
         for(Funcionario f : listaFuncionarios){
             if(f.getNome().equals(nomeFuncionario)){
-                System.out.println("Funcionario selecionado\n" + f);
+                System.out.println("Funcionario selecionado: " + f);
                 return f;
             }
         }

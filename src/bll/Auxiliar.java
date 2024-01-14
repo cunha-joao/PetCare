@@ -6,7 +6,6 @@ import java.util.List;
 
 
 public class Auxiliar extends Utilizador implements Serializable {
-
     private List<Marcacao> marcacoes;
 
     public Auxiliar(String nomeUtilizador, String password, String nome, String numeroCartaoCidadao,
