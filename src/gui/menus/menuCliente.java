@@ -3,10 +3,13 @@ package gui.menus;
 import bll.Cliente;
 import bll.Marcacao;
 import bll.Utilizador;
+import gui.metodos.marcarServico;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 
@@ -23,6 +26,26 @@ public class menuCliente extends JFrame{
         this.utilizadorAtual = utilizador;
         this.currentFrame = cliFrame;
 
+        marcacaoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame marcarFrame = new JFrame("Marcar Serviço");
+                marcarServico marcServico = new marcarServico(utilizadorAtual, marcarFrame);
+                marcarFrame.setContentPane(marcServico.getPanel());
+                marcarFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                marcarFrame.setSize(300, 300);
+                marcarFrame.setVisible(true);
+
+                currentFrame.setVisible(false);
+
+                marcarFrame.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        currentFrame.setVisible(true);
+                    }
+                });
+            }
+        });
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

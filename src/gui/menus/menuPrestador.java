@@ -67,7 +67,7 @@ public class menuPrestador extends JFrame{
 
                 criarLocalFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e) {
+                    public void windowClosed(WindowEvent e) {
                         currentFrame.setVisible(true);
                     }
                 });
@@ -87,7 +87,7 @@ public class menuPrestador extends JFrame{
 
                 consultarLocaisFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e){
+                    public void windowClosed(WindowEvent e){
                         currentFrame.setVisible(true);
                     }
                 });
@@ -107,7 +107,7 @@ public class menuPrestador extends JFrame{
 
                 adFuncFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e){
+                    public void windowClosed(WindowEvent e){
                         currentFrame.setVisible(true);
                     }
                 });
@@ -143,7 +143,7 @@ public class menuPrestador extends JFrame{
 
                 alterarDadosFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e) {
+                    public void windowClosed(WindowEvent e) {
                         currentFrame.setVisible(true);
                     }
                 });

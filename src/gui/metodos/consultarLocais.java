@@ -67,6 +67,12 @@ public class consultarLocais{
                 }
             }
         });
+        sairButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                currentFrame.dispose();
+            }
+        });
     }
 
     public JPanel getPanel() {

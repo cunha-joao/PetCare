@@ -41,4 +41,15 @@ public class PrestadorServico extends Utilizador {
     public static Map<PrestadorServico, List<Local>> getPrestadorLocaisMap() {
         return prestadorLocaisMap;
     }
+
+    public List<Local> getLocaisAssociados(String nomePrestador) {
+        List<Local> locaisAssociados = new ArrayList<>();
+        for (Map.Entry<PrestadorServico, List<Local>> entry : prestadorLocaisMap.entrySet()) {
+            PrestadorServico prestador = entry.getKey();
+            if (prestador.getNome().equals(nomePrestador)) {
+                locaisAssociados.addAll(entry.getValue());
+            }
+        }
+        return locaisAssociados;
+    }
 }
