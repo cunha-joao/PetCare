@@ -27,6 +27,14 @@ public class PrestadorServico extends Utilizador {
         return funcionarios;
     }
 
+    public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
+        return localPrestadorMap;
+    }
+
+    public static Map<PrestadorServico, List<Local>> getPrestadorLocaisMap() {
+        return prestadorLocaisMap;
+    }
+
     public List<Marcacao> consultarMarcacoes() {
         if (marcacoes == null) {
             marcacoes = new ArrayList<>();
@@ -34,11 +42,20 @@ public class PrestadorServico extends Utilizador {
         return marcacoes;
     }
 
-    public static Map<Local, PrestadorServico> getLocalPrestadorMap() {
-        return localPrestadorMap;
+    public List<Local> getLocaisAssociados(String nomePrestador) {
+        List<Local> locaisAssociados = new ArrayList<>();
+        for (Map.Entry<PrestadorServico, List<Local>> entry : prestadorLocaisMap.entrySet()) {
+            PrestadorServico prestador = entry.getKey();
+            if (prestador.getNome().equals(nomePrestador)) {
+                locaisAssociados.addAll(entry.getValue());
+            }
+        }
+        return locaisAssociados;
     }
 
-    public static Map<PrestadorServico, List<Local>> getPrestadorLocaisMap() {
-        return prestadorLocaisMap;
+    public String toString(){
+        return "Nome: " + getNome() + "; Número do CC: " + getNumeroCartaoCidadao() + "; Número Fiscal: " +
+                getNumeroFiscal() + "; Telefone: " + getTelefone() + "; Morada: " + getMorada() + "; Localidade: " +
+                getLocalidade();
     }
 }

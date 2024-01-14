@@ -55,4 +55,10 @@ public class Marcacao {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public String toString(){
+        return "Cliente: " + getCliente() + "; Prestador: " + getPrestadorServico() + "; Local: " + getLocal() +
+                "; Funcionário: " + getFuncionario() + "; Serviço: " + getServico() + "; Data: " + getDataHora() +
+                "; Estado: " + getEstado();
+    }
 }

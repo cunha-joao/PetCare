@@ -32,8 +32,7 @@ public class menuPrestador extends JFrame{
         consultarMarcacoesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (utilizadorAtual instanceof PrestadorServico) {
-                    PrestadorServico prestador = (PrestadorServico) utilizadorAtual;
+                if (utilizadorAtual instanceof PrestadorServico prestador) {
                     List<Marcacao> marcacoes = prestador.consultarMarcacoes();
 
                     if (marcacoes.isEmpty()) {
@@ -41,15 +40,19 @@ public class menuPrestador extends JFrame{
                     } else {
                         StringBuilder dadosMarcacoes = new StringBuilder();
                         for (Marcacao marcacao : marcacoes) {
-                            dadosMarcacoes.append("Data: ").append(marcacao.getDataHora())
-                                    .append(", Serviço: ").append(marcacao.getServico().getTipo())
-                                    .append(", Estado: ").append(marcacao.getEstado())
+                            dadosMarcacoes.append("Cliente:\n").append(marcacao.getCliente())
+                                    .append("\n\nPrestador:\n").append(marcacao.getPrestadorServico())
+                                    .append("\n\nLocal de Recolha:\n").append(marcacao.getLocal())
+                                    .append("\n\nFuncionário:\n").append(marcacao.getFuncionario())
+                                    .append("\n\nData:\n").append(marcacao.getDataHora())
+                                    .append("\n\nServiço:\n").append(marcacao.getServico().getTipo())
+                                    .append("\n\nEstado:\n").append(marcacao.getEstado())
                                     .append("\n");
                         }
                         JOptionPane.showMessageDialog(null, dadosMarcacoes.toString(), "Marcações", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "A funcionalidade de consultar marcações é apenas para clientes.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "A funcionalidade de consultar marcações não está disponível.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }
             }
         });
@@ -67,7 +70,7 @@ public class menuPrestador extends JFrame{
 
                 criarLocalFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e) {
+                    public void windowClosed(WindowEvent e) {
                         currentFrame.setVisible(true);
                     }
                 });
@@ -87,7 +90,7 @@ public class menuPrestador extends JFrame{
 
                 consultarLocaisFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e){
+                    public void windowClosed(WindowEvent e){
                         currentFrame.setVisible(true);
                     }
                 });
@@ -107,7 +110,7 @@ public class menuPrestador extends JFrame{
 
                 adFuncFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e){
+                    public void windowClosed(WindowEvent e){
                         currentFrame.setVisible(true);
                     }
                 });
@@ -143,7 +146,7 @@ public class menuPrestador extends JFrame{
 
                 alterarDadosFrame.addWindowListener(new WindowAdapter() {
                     @Override
-                    public void windowClosing(WindowEvent e) {
+                    public void windowClosed(WindowEvent e) {
                         currentFrame.setVisible(true);
                     }
                 });
